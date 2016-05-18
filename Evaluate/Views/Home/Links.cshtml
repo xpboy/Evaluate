@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Evaluate.Models.Link>
+
+@{
+    ViewBag.Title = "Enlaces Externos";
+}
+
+<div class="panel">
+    <div class="panel-body">
+        <div class="col-md-12 col-sm-12">
+            <h3 class="animated fadeInLeft">Pro Aviation Test - @ViewBag.Title</h3>
+            <p class="animated fadeInDown"><span class="fa  fa-database"></span> Base de Estudios Examen del IDAC</p>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-body">
+        <!-- Intro Content -->
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="list-group">
+                    @foreach (var item in Model)
+                    {
+                        @*<a href="#" class="list-group-item">@Html.DisplayFor(modelItem => item.LinkName)</a>*@
+                        <a href="@item.Url" class="list-group-item" target="_blank">
+                            <h4 class="list-group-item-heading">
+                                @item.LinkName
+                            </h4>
+                            <p class="list-group-item-text">@item.Description</p>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.LinkId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.LinkId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LinkId })
+            </td>
+        </tr>
+    }
+
+</table>*@

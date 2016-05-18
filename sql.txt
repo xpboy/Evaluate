@@ -1,0 +1,95 @@
+create table Persons (
+PersonId int primary key identity(1, 1),
+UserId int,
+Name nvarchar(75),
+SecondName nvarchar(75),
+LastName nvarchar(75),
+SecondLastName nvarchar(75),
+Gender varchar(1),
+CreatedBy int,
+CreatedDate datetime
+)
+
+create table Students (
+StudentId int primary key identity(1, 1),
+PersonId int,
+CareerId int,
+Status bit default 'true',
+CreatedBy int,
+CreatedDate datetime
+)
+
+create table Careers(
+CareerId int primary key identity(1, 1),
+CarrerName nvarchar(100),
+Status bit default 'true'
+)
+
+create table CareerSubjects (
+Id int primary key identity(1, 1),
+CareerId int,
+SubjectId int,
+Status bit default 'true'
+)
+
+create table Subjects (
+SubjectId int primary key identity(1, 1),
+Subject nvarchar(150),
+Status bit default 'true'
+)
+
+create table StudentSubjects (
+Id int primary key identity(1, 1),
+StudentId int,
+SubjectId int,
+Status bit default 'true'
+)
+
+create table Questions (
+QuestionId int primary key identity(1, 1),
+SubjectId int,
+Question nvarchar(250),
+Status bit default 'true'
+)
+
+create table Answers (
+AnswerId int primary key identity(1, 1),
+QuestionId int,
+Answer nvarchar(250),
+IsCorrect bit default 'false',
+Status bit default 'true'
+)
+
+create table Evaluations (
+EvaluationId int primary key identity(1, 1),
+StudentId int,
+SubjectId int,
+Completed bit default 'false',
+CreatedDate datetime
+)
+
+create table EvaluationDetails (
+DetailId int primary key identity(1, 1),
+EvaluationId int,
+QuestionId int,
+AnswerId int,
+IsCorrect bit default 'false',
+)
+
+create table Settings (
+SettingId int primary key identity(1, 1),
+QuestionsNumber int,
+TotalMin int,
+MinEvaluations int
+)
+
+create table Plans (
+PlanId int primary key identity(1, 1),
+PlanName varchar(50),
+Status bit default 'true'
+)
+
+
+select * from results
+
+select * from ResultDetails

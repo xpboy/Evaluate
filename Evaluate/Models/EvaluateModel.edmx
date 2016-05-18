@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EvaluateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="AnswerName" Type="nvarchar(max)" />
+          <Property Name="IsCorrect" Type="bit" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="75" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="75" />
+          <Property Name="SecondLastName" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="Careers">
+          <Key>
+            <PropertyRef Name="CareerId" />
+          </Key>
+          <Property Name="CareerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CareerName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="QuestionsInExam" Type="int" />
+          <Property Name="MinScore" Type="int" />
+        </EntityType>
+        <EntityType Name="EvaluationDetails">
+          <Key>
+            <PropertyRef Name="DetailId" />
+          </Key>
+          <Property Name="DetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EvaluationId" Type="int" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="AnswerId" Type="int" />
+          <Property Name="Selected" Type="bit" />
+          <Property Name="IsCorrect" Type="bit" />
+        </EntityType>
+        <EntityType Name="EvaluationQuestions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EvaluationId" Type="int" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="AnswerId" Type="int" />
+          <Property Name="IsCorrect" Type="bit" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="CorrectAnswerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Evaluations">
+          <Key>
+            <PropertyRef Name="EvaluationId" />
+          </Key>
+          <Property Name="EvaluationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="Completed" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Score" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="QuestionsInExam" Type="int" />
+          <Property Name="MinScore" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="CareerId" Type="int" />
+          <Property Name="IsLastOne" Type="bit" />
+        </EntityType>
+        <EntityType Name="Links">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="Url" Type="varchar" MaxLength="250" />
+          <Property Name="ImageName" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="75" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="75" />
+          <Property Name="SecondLastName" Type="nvarchar" MaxLength="75" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Plans">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanName" Type="varchar" MaxLength="50" />
+          <Property Name="Months" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Interval" Type="varchar" MaxLength="20" />
+          <Property Name="Increment" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectId" Type="int" />
+          <Property Name="QuestionName" Type="nvarchar(max)" />
+          <Property Name="Difficulty" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="ImageName" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="StudentCareers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="CareerId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="PlanId" Type="int" />
+          <Property Name="Months" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Interval" Type="varchar" MaxLength="20" />
+          <Property Name="Increment" Type="int" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CareerId" Type="int" />
+          <Property Name="SubjectName" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="QuestionsInExam" Type="int" />
+          <Property Name="MinScore" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__StudentCa__Caree__4316F928">
+          <End Role="Careers" Type="Self.Careers" Multiplicity="0..1" />
+          <End Role="StudentCareers" Type="Self.StudentCareers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Careers">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="StudentCareers">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationDetails_Answers">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1" />
+          <End Role="EvaluationDetails" Type="Self.EvaluationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="AnswerId" />
+            </Principal>
+            <Dependent Role="EvaluationDetails">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationDetails_Evaluations">
+          <End Role="Evaluations" Type="Self.Evaluations" Multiplicity="0..1" />
+          <End Role="EvaluationDetails" Type="Self.EvaluationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluations">
+              <PropertyRef Name="EvaluationId" />
+            </Principal>
+            <Dependent Role="EvaluationDetails">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationDetails_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="EvaluationDetails" Type="Self.EvaluationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="EvaluationDetails">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationQuestions_Answers">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1" />
+          <End Role="EvaluationQuestions" Type="Self.EvaluationQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="AnswerId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestions">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationQuestions_Evaluations">
+          <End Role="Evaluations" Type="Self.Evaluations" Multiplicity="0..1" />
+          <End Role="EvaluationQuestions" Type="Self.EvaluationQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluations">
+              <PropertyRef Name="EvaluationId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestions">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationQuestions_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="EvaluationQuestions" Type="Self.EvaluationQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestions">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluations_Careers">
+          <End Role="Careers" Type="Self.Careers" Multiplicity="0..1" />
+          <End Role="Evaluations" Type="Self.Evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Careers">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="Evaluations">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluations_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Evaluations" Type="Self.Evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Evaluations">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluations_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="Evaluations" Type="Self.Evaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Evaluations">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCareers_Plans">
+          <End Role="Plans" Type="Self.Plans" Multiplicity="0..1" />
+          <End Role="StudentCareers" Type="Self.StudentCareers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plans">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="StudentCareers">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCareers_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="StudentCareers" Type="Self.StudentCareers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentCareers">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subjects_Careers">
+          <End Role="Careers" Type="Self.Careers" Multiplicity="0..1" />
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Careers">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EvaluateModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Careers" EntityType="Self.Careers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluationDetails" EntityType="Self.EvaluationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluationQuestions" EntityType="Self.EvaluationQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluations" EntityType="Self.Evaluations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Links" EntityType="Self.Links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentCareers" EntityType="Self.StudentCareers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__StudentCa__Caree__4316F928" Association="Self.FK__StudentCa__Caree__4316F928">
+            <End Role="Careers" EntitySet="Careers" />
+            <End Role="StudentCareers" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationDetails_Answers" Association="Self.FK_EvaluationDetails_Answers">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="EvaluationDetails" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationDetails_Evaluations" Association="Self.FK_EvaluationDetails_Evaluations">
+            <End Role="Evaluations" EntitySet="Evaluations" />
+            <End Role="EvaluationDetails" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationDetails_Questions" Association="Self.FK_EvaluationDetails_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="EvaluationDetails" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationQuestions_Answers" Association="Self.FK_EvaluationQuestions_Answers">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="EvaluationQuestions" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationQuestions_Evaluations" Association="Self.FK_EvaluationQuestions_Evaluations">
+            <End Role="Evaluations" EntitySet="Evaluations" />
+            <End Role="EvaluationQuestions" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationQuestions_Questions" Association="Self.FK_EvaluationQuestions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="EvaluationQuestions" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluations_Careers" Association="Self.FK_Evaluations_Careers">
+            <End Role="Careers" EntitySet="Careers" />
+            <End Role="Evaluations" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluations_Students" Association="Self.FK_Evaluations_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Evaluations" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluations_Subjects" Association="Self.FK_Evaluations_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Evaluations" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Subjects" Association="Self.FK_Questions_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCareers_Plans" Association="Self.FK_StudentCareers_Plans">
+            <End Role="Plans" EntitySet="Plans" />
+            <End Role="StudentCareers" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCareers_Students" Association="Self.FK_StudentCareers_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentCareers" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjects_Careers" Association="Self.FK_Subjects_Careers">
+            <End Role="Careers" EntitySet="Careers" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EvaluateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Evaluations" EntityType="EvaluateModel.Evaluation" />
+          <EntitySet Name="StudentCareers" EntityType="EvaluateModel.StudentCareer" />
+          <EntitySet Name="Careers" EntityType="EvaluateModel.Career" />
+          <AssociationSet Name="FK__StudentCa__Caree__4316F928" Association="EvaluateModel.FK__StudentCa__Caree__4316F928">
+            <End Role="Career" EntitySet="Careers" />
+            <End Role="StudentCareer" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <EntitySet Name="Answers" EntityType="EvaluateModel.Answer" />
+          <EntitySet Name="Questions" EntityType="EvaluateModel.Question" />
+          <AssociationSet Name="FK_dbo_Answers_dbo_Questions_QuestionId" Association="EvaluateModel.FK_dbo_Answers_dbo_Questions_QuestionId">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="Answer" EntitySet="Answers" />
+          </AssociationSet>
+          <EntitySet Name="Subjects" EntityType="EvaluateModel.Subject" />
+          <AssociationSet Name="FK_Subjects_Careers" Association="EvaluateModel.FK_Subjects_Careers">
+            <End Role="Career" EntitySet="Careers" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluations_Subjects" Association="EvaluateModel.FK_Evaluations_Subjects">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Evaluation" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Questions_dbo_Subjects_SubjectId" Association="EvaluateModel.FK_dbo_Questions_dbo_Subjects_SubjectId">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <EntitySet Name="EvaluationDetails" EntityType="EvaluateModel.EvaluationDetail" />
+          <AssociationSet Name="FK_EvaluationDetails_Answers" Association="EvaluateModel.FK_EvaluationDetails_Answers">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="EvaluationDetail" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationDetails_Evaluations" Association="EvaluateModel.FK_EvaluationDetails_Evaluations">
+            <End Role="Evaluation" EntitySet="Evaluations" />
+            <End Role="EvaluationDetail" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationDetails_Questions" Association="EvaluateModel.FK_EvaluationDetails_Questions">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="EvaluationDetail" EntitySet="EvaluationDetails" />
+          </AssociationSet>
+          <EntitySet Name="EvaluationQuestions" EntityType="EvaluateModel.EvaluationQuestion" />
+          <AssociationSet Name="FK_EvaluationQuestions_Answers1" Association="EvaluateModel.FK_EvaluationQuestions_Answers1">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="EvaluationQuestion" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationQuestions_Evaluations" Association="EvaluateModel.FK_EvaluationQuestions_Evaluations">
+            <End Role="Evaluation" EntitySet="Evaluations" />
+            <End Role="EvaluationQuestion" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationQuestions_Questions" Association="EvaluateModel.FK_EvaluationQuestions_Questions">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="EvaluationQuestion" EntitySet="EvaluationQuestions" />
+          </AssociationSet>
+          <EntitySet Name="Persons" EntityType="EvaluateModel.Person" />
+          <AssociationSet Name="FK_Evaluations_Careers" Association="EvaluateModel.FK_Evaluations_Careers">
+            <End Role="Career" EntitySet="Careers" />
+            <End Role="Evaluation" EntitySet="Evaluations" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="EvaluateModel.AspNetUser" />
+          <EntitySet Name="Students" EntityType="EvaluateModel.Student" />
+          <AssociationSet Name="FK_Evaluations_Students" Association="EvaluateModel.FK_Evaluations_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Evaluation" EntitySet="Evaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentCareers_Students" Association="EvaluateModel.FK_StudentCareers_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentCareer" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <EntitySet Name="Plans" EntityType="EvaluateModel.Plan" />
+          <AssociationSet Name="FK_StudentCareers_Plans" Association="EvaluateModel.FK_StudentCareers_Plans">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="StudentCareer" EntitySet="StudentCareers" />
+          </AssociationSet>
+          <EntitySet Name="Links" EntityType="EvaluateModel.Link" />
+          </EntityContainer>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="EvaluationId" />
+          </Key>
+          <Property Name="EvaluationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="Completed" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Subject" Relationship="EvaluateModel.FK_Evaluations_Subjects" FromRole="Evaluation" ToRole="Subject" />
+          <NavigationProperty Name="EvaluationDetails" Relationship="EvaluateModel.FK_EvaluationDetails_Evaluations" FromRole="Evaluation" ToRole="EvaluationDetail" />
+          <NavigationProperty Name="EvaluationQuestions" Relationship="EvaluateModel.FK_EvaluationQuestions_Evaluations" FromRole="Evaluation" ToRole="EvaluationQuestion" />
+          <Property Name="Score" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="QuestionsInExam" Type="Int32" />
+          <Property Name="MinScore" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="CareerId" Type="Int32" />
+          <Property Name="IsLastOne" Type="Boolean" />
+          <NavigationProperty Name="Career" Relationship="EvaluateModel.FK_Evaluations_Careers" FromRole="Evaluation" ToRole="Career" />
+          <NavigationProperty Name="Student" Relationship="EvaluateModel.FK_Evaluations_Students" FromRole="Evaluation" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="StudentCareer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="CareerId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Career" Relationship="EvaluateModel.FK__StudentCa__Caree__4316F928" FromRole="StudentCareer" ToRole="Career" />
+          <NavigationProperty Name="Student" Relationship="EvaluateModel.FK_StudentCareers_Students" FromRole="StudentCareer" ToRole="Student" />
+          <Property Name="PlanId" Type="Int32" />
+          <Property Name="Months" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Plan" Relationship="EvaluateModel.FK_StudentCareers_Plans" FromRole="StudentCareer" ToRole="Plan" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Interval" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Increment" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Career">
+          <Key>
+            <PropertyRef Name="CareerId" />
+          </Key>
+          <Property Name="CareerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CareerName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="StudentCareers" Relationship="EvaluateModel.FK__StudentCa__Caree__4316F928" FromRole="Career" ToRole="StudentCareer" />
+          <NavigationProperty Name="Subjects" Relationship="EvaluateModel.FK_Subjects_Careers" FromRole="Career" ToRole="Subject" />
+          <Property Name="QuestionsInExam" Type="Int32" />
+          <Property Name="MinScore" Type="Int32" />
+          <NavigationProperty Name="Evaluations" Relationship="EvaluateModel.FK_Evaluations_Careers" FromRole="Career" ToRole="Evaluation" />
+        </EntityType>
+        <Association Name="FK__StudentCa__Caree__4316F928">
+          <End Type="EvaluateModel.Career" Role="Career" Multiplicity="0..1" />
+          <End Type="EvaluateModel.StudentCareer" Role="StudentCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Career">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="StudentCareer">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerId" />
+          </Key>
+          <Property Name="AnswerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="AnswerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsCorrect" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Question" Relationship="EvaluateModel.FK_dbo_Answers_dbo_Questions_QuestionId" FromRole="Answer" ToRole="Question" />
+          <NavigationProperty Name="EvaluationDetails" Relationship="EvaluateModel.FK_EvaluationDetails_Answers" FromRole="Answer" ToRole="EvaluationDetail" />
+          <NavigationProperty Name="EvaluationQuestions" Relationship="EvaluateModel.FK_EvaluationQuestions_Answers1" FromRole="Answer" ToRole="EvaluationQuestion" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectId" Type="Int32" />
+          <Property Name="QuestionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Difficulty" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="ImageName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Answers" Relationship="EvaluateModel.FK_dbo_Answers_dbo_Questions_QuestionId" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="Subject" Relationship="EvaluateModel.FK_dbo_Questions_dbo_Subjects_SubjectId" FromRole="Question" ToRole="Subject" />
+          <NavigationProperty Name="EvaluationDetails" Relationship="EvaluateModel.FK_EvaluationDetails_Questions" FromRole="Question" ToRole="EvaluationDetail" />
+          <NavigationProperty Name="EvaluationQuestions" Relationship="EvaluateModel.FK_EvaluationQuestions_Questions" FromRole="Question" ToRole="EvaluationQuestion" />
+        </EntityType>
+        <Association Name="FK_dbo_Answers_dbo_Questions_QuestionId">
+          <End Type="EvaluateModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CareerId" Type="Int32" />
+          <Property Name="SubjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionsInExam" Type="Int32" />
+          <Property Name="MinScore" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Career" Relationship="EvaluateModel.FK_Subjects_Careers" FromRole="Subject" ToRole="Career" />
+          <NavigationProperty Name="Evaluations" Relationship="EvaluateModel.FK_Evaluations_Subjects" FromRole="Subject" ToRole="Evaluation" />
+          <NavigationProperty Name="Questions" Relationship="EvaluateModel.FK_dbo_Questions_dbo_Subjects_SubjectId" FromRole="Subject" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_Subjects_Careers">
+          <End Type="EvaluateModel.Career" Role="Career" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Career">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluations_Subjects">
+          <End Type="EvaluateModel.Subject" Role="Subject" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Evaluation" Role="Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Questions_dbo_Subjects_SubjectId">
+          <End Type="EvaluateModel.Subject" Role="Subject" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EvaluationDetail">
+          <Key>
+            <PropertyRef Name="DetailId" />
+          </Key>
+          <Property Name="DetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EvaluationId" Type="Int32" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="AnswerId" Type="Int32" />
+          <Property Name="Selected" Type="Boolean" />
+          <Property Name="IsCorrect" Type="Boolean" />
+          <NavigationProperty Name="Answer" Relationship="EvaluateModel.FK_EvaluationDetails_Answers" FromRole="EvaluationDetail" ToRole="Answer" />
+          <NavigationProperty Name="Evaluation" Relationship="EvaluateModel.FK_EvaluationDetails_Evaluations" FromRole="EvaluationDetail" ToRole="Evaluation" />
+          <NavigationProperty Name="Question" Relationship="EvaluateModel.FK_EvaluationDetails_Questions" FromRole="EvaluationDetail" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_EvaluationDetails_Answers">
+          <End Type="EvaluateModel.Answer" Role="Answer" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationDetail" Role="EvaluationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerId" />
+            </Principal>
+            <Dependent Role="EvaluationDetail">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationDetails_Evaluations">
+          <End Type="EvaluateModel.Evaluation" Role="Evaluation" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationDetail" Role="EvaluationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluation">
+              <PropertyRef Name="EvaluationId" />
+            </Principal>
+            <Dependent Role="EvaluationDetail">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationDetails_Questions">
+          <End Type="EvaluateModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationDetail" Role="EvaluationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="EvaluationDetail">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EvaluationQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EvaluationId" Type="Int32" />
+          <Property Name="QuestionId" Type="Int32" />
+          <Property Name="AnswerId" Type="Int32" />
+          <Property Name="IsCorrect" Type="Boolean" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="EvaluateModel.FK_EvaluationQuestions_Answers1" FromRole="EvaluationQuestion" ToRole="Answer" />
+          <NavigationProperty Name="Evaluation" Relationship="EvaluateModel.FK_EvaluationQuestions_Evaluations" FromRole="EvaluationQuestion" ToRole="Evaluation" />
+          <NavigationProperty Name="Question" Relationship="EvaluateModel.FK_EvaluationQuestions_Questions" FromRole="EvaluationQuestion" ToRole="Question" />
+          <Property Name="CorrectAnswerId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_EvaluationQuestions_Answers1">
+          <End Type="EvaluateModel.Answer" Role="Answer" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationQuestion" Role="EvaluationQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestion">
+              <PropertyRef Name="AnswerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationQuestions_Evaluations">
+          <End Type="EvaluateModel.Evaluation" Role="Evaluation" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationQuestion" Role="EvaluationQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evaluation">
+              <PropertyRef Name="EvaluationId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestion">
+              <PropertyRef Name="EvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationQuestions_Questions">
+          <End Type="EvaluateModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="EvaluateModel.EvaluationQuestion" Role="EvaluationQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionId" />
+            </Principal>
+            <Dependent Role="EvaluationQuestion">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SecondLastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Evaluations_Careers">
+          <End Type="EvaluateModel.Career" Role="Career" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Evaluation" Role="Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Career">
+              <PropertyRef Name="CareerId" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="CareerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SecondLastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Evaluations" Relationship="EvaluateModel.FK_Evaluations_Students" FromRole="Student" ToRole="Evaluation" />
+          <NavigationProperty Name="StudentCareers" Relationship="EvaluateModel.FK_StudentCareers_Students" FromRole="Student" ToRole="StudentCareer" />
+        </EntityType>
+        <Association Name="FK_Evaluations_Students">
+          <End Type="EvaluateModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="EvaluateModel.Evaluation" Role="Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentCareers_Students">
+          <End Type="EvaluateModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="EvaluateModel.StudentCareer" Role="StudentCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="StudentCareer">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Months" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="StudentCareers" Relationship="EvaluateModel.FK_StudentCareers_Plans" FromRole="Plan" ToRole="StudentCareer" />
+          <Property Name="Interval" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Increment" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_StudentCareers_Plans">
+          <End Type="EvaluateModel.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="EvaluateModel.StudentCareer" Role="StudentCareer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanId" />
+            </Principal>
+            <Dependent Role="StudentCareer">
+              <PropertyRef Name="PlanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EvaluateModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EvaluateModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluations">
+            <EntityTypeMapping TypeName="EvaluateModel.Evaluation">
+              <MappingFragment StoreEntitySet="Evaluations">
+                <ScalarProperty Name="IsLastOne" ColumnName="IsLastOne" />
+                <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="QuestionsInExam" ColumnName="QuestionsInExam" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentCareers">
+            <EntityTypeMapping TypeName="EvaluateModel.StudentCareer">
+              <MappingFragment StoreEntitySet="StudentCareers">
+                <ScalarProperty Name="Increment" ColumnName="Increment" />
+                <ScalarProperty Name="Interval" ColumnName="Interval" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Careers">
+            <EntityTypeMapping TypeName="EvaluateModel.Career">
+              <MappingFragment StoreEntitySet="Careers">
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="QuestionsInExam" ColumnName="QuestionsInExam" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CareerName" ColumnName="CareerName" />
+                <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="EvaluateModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="AnswerName" ColumnName="AnswerName" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="EvaluateModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="EvaluateModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MinScore" ColumnName="MinScore" />
+                <ScalarProperty Name="QuestionsInExam" ColumnName="QuestionsInExam" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="CareerId" ColumnName="CareerId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluationDetails">
+            <EntityTypeMapping TypeName="EvaluateModel.EvaluationDetail">
+              <MappingFragment StoreEntitySet="EvaluationDetails">
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+                <ScalarProperty Name="DetailId" ColumnName="DetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluationQuestions">
+            <EntityTypeMapping TypeName="EvaluateModel.EvaluationQuestion">
+              <MappingFragment StoreEntitySet="EvaluationQuestions">
+                <ScalarProperty Name="CorrectAnswerId" ColumnName="CorrectAnswerId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="EvaluationId" ColumnName="EvaluationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="EvaluateModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SecondLastName" ColumnName="SecondLastName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="EvaluateModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="SecondLastName" ColumnName="SecondLastName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="EvaluateModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="EvaluateModel.Plan">
+              <MappingFragment StoreEntitySet="Plans">
+                <ScalarProperty Name="Increment" ColumnName="Increment" />
+                <ScalarProperty Name="Interval" ColumnName="Interval" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Links">
+            <EntityTypeMapping TypeName="EvaluateModel.Link">
+              <MappingFragment StoreEntitySet="Links">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

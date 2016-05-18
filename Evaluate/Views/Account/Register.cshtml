@@ -1,0 +1,122 @@
+﻿@model Evaluate.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Shared/_Authenticate.cshtml";
+    ViewBag.Title = "Registrar";
+}
+
+@*<h2>@ViewBag.Title.</h2>*@
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel periodic-login">
+        <div class="panel-body text-center">
+            <h1 class="atomic-symbol"><span class="icons icon-user"></span></h1>
+            <p class="element-name">@ViewBag.Title</p>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <i class="icons icon-arrow-down"></i>
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-text", required = "required" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-text", required = "required" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.Password)
+            </div>
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-text", required = "required" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.ConfirmPassword)
+            </div>
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-text", required = "required" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.Name)
+            </div>
+            @*<div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.TextBoxFor(m => m.SecondName, new { @class = "form-text" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.SecondName)
+            </div>*@
+            <div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-text", required = "required" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.LastName)
+            </div>
+            @*<div class="form-group form-animate-text" style="margin-top:40px !important;">
+                @Html.TextBoxFor(m => m.SecondLastName, new { @class = "form-text" })
+                <span class="bar"></span>
+                @Html.LabelFor(m => m.SecondLastName)
+            </div>*@
+            @*<label class="pull-left">
+                <input type="checkbox" class="icheck pull-left" name="checkbox1" /> &nbsp Agree the terms and policy
+            </label>*@
+            <input type="submit" class="btn col-md-12" value="Registrar" />
+        </div>
+        <div class="text-center" style="padding:5px;">
+            @Html.ActionLink("¿Ya tienes una cuenta?", "Login")
+        </div>
+    </div>
+        
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SecondName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SecondLastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.SecondLastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <!-- -->
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Registrar" />
+        </div>
+    </div>*@
+}
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

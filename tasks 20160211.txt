@@ -1,0 +1,8 @@
+*MinScore
+*eva career
+null answers
+*solo ultimo exam por materia
+*main page
+*error en evaluacion
+no permitir retornar cuando se termina
+mantenimiento carers and subjects

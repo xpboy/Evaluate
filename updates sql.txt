@@ -1,0 +1,118 @@
+create table StudentCareers (
+Id int primary key identity(1, 1),
+StudentId int,
+CareerId int,
+CreatedBy int,
+CreatedDate datetime,
+Status bit default 'true'
+)
+
+ALTER TABLE StudentCareers
+ADD FOREIGN KEY (CareerId)
+REFERENCES Careers(CareerId)
+
+
+****************************************************************
+create table Careers (
+CareerId int primary key identity(1, 1),
+CareerName nvarchar(150),
+Status bit default 'true'
+)
+
+ALTER TABLE Subjects
+ADD CareerId int
+
+ALTER TABLE Subjects
+ADD FOREIGN KEY (CareerId)
+REFERENCES Careers(CareerId)
+
+after create the first career
+update subjects set CareerId = 1
+
+--*****************************************************************
+SELECT a.QuestionId, a.AnswerId, isnull(a.IsCorrect, 0) IsCorrect
+FROM Questions q
+left join Answers a on q.QuestionId = a.QuestionId
+where q.Status = 1
+	and a.Status = 1
+order by NewId(), a.QuestionId
+
+
+select * from Evaluations
+
+select * from EvaluationDetails where EvaluationId = 1
+
+select * from StudentCareers
+
+create table StudentCareers (
+Id int primary key identity(1, 1),
+StudentId int,
+CareerId int,
+CreatedDate datetime,
+CreatedBy int,
+Status bit default 'true'
+)
+
+ALTER TABLE StudentCareers
+ADD FOREIGN KEY (CareerId)
+REFERENCES Careers(CareerId)
+
+select * from StudentCareers
+
+insert into StudentCareers (StudentId, CareerId, CreatedBy, CreatedDate, Status)
+	values(1, 1, 1, GETDATE(), 1)
+
+create table Students (
+StudentId int primary key identity(1, 1),
+PersonId int,
+Status bit default 'true',
+CreatedBy int,
+CreatedDate datetime
+)
+
+create table Evaluations (
+EvaluationId int primary key identity(1, 1),
+StudentId int,
+SubjectId int,
+Completed bit default 'false',
+CreatedDate datetime
+)
+
+create table EvaluationDetails (
+DetailId int primary key identity(1, 1),
+EvaluationId int,
+QuestionId int,
+AnswerId int,
+IsCorrect bit default 'false',
+)
+
+create table EvaluationQuestions (
+Id int primary key identity(1, 1),
+EvaluationId int,
+QuestionId int,
+SelectedId int,
+IsCorrect bit default 'false',
+Sequence int not null
+)
+
+insert into EvaluationQuestions
+select distinct EvaluationId, QuestionId, null, 0  from EvaluationDetails
+
+select * from EvaluationQuestions
+
+--create table EvaluationAnswers (
+--Id int primary key identity(1, 1),
+--EvaluationId int,
+--QuestionId int,
+--AnswerId int,
+--IsCorrect bit default 'false'
+--)
+
+
+create view vw_EvaluationQuestions as
+select distinct EvaluationId, QuestionId 
+from EvaluationDetails
+
+select * from vw_EvaluationQuestions
+
+drop view vw_EvaluationQuestions

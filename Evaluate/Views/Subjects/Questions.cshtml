@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Evaluate.Models.Question>
+
+@{
+    ViewBag.Title = "Preguntas";
+}
+
+<h2>Questions</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva ", "Create", "Questions") <strong>Pregunta</strong>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+        </td>
+        <td>
+            @if (item.Status == true)
+            {
+                <span class="label label-success">Activa</span>
+            }
+            else
+            {
+                <span class="label label-danger">Desactiva</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionName)
+        </td>
+        <td>
+            @Html.ActionLink("Respuestas", "Index", "Answers", new { id = item.QuestionId }, null) |
+            @Html.ActionLink("Editar", "Edit", "Questions", new { id = item.QuestionId }, null)
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>

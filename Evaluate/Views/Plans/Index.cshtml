@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Evaluate.Models.Plan>
+
+@{
+    ViewBag.Title = "Planes";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Months)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Increment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlanName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Months)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interval)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Increment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlanId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlanId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlanId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Evaluate.Models.Subject>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectName)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.SubjectId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SubjectId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SubjectId })*@
+            @Html.ActionLink("Tomar Exámen", "Index", "Evaluation", new { Id = item.SubjectId }, null)
+        </td>
+    </tr>
+}
+
+</table>

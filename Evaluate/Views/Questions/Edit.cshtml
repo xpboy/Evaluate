@@ -1,0 +1,77 @@
+﻿@model Evaluate.Models.Question
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+
+@using (Html.BeginForm("Edit", "Questions", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-horizontal">
+                <h4>Pregunta</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.QuestionId)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuestionName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.QuestionName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.QuestionName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Status, true) Activa
+                        </div>
+                        <div class="radio-inline">
+                            @Html.RadioButtonFor(model => model.Status, false) Desactiva
+                        </div>
+                        <div class="checkbox">
+                            @*@Html.CheckBoxFor(model => Convert.ToBoolean(model.Status), new { @checked = "checked" });*@
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Imagen</label>
+                    <div class="col-md-10">
+                        <input type="file" name="file" id="file" style="width: 100%;" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Guardar" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @if (@ViewBag.Image != null)
+            {
+                <div class="form-group">
+                    <img src="@Url.Content(@ViewBag.Image)" alt="Sample Image" width="300px" />
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

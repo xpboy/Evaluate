@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Evaluate.Models.Subject>
+
+@{
+    ViewBag.Title = "Examenes Disponibles";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Career.CareerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href = '@(Url.Action("PreIndex", "Evaluations", new { subjectId = item.SubjectId }))'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Career.CareerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinScore)
+            </td>
+            @*<td>
+                @Html.ActionLink("Tomar Examen", "Index", new { id = item.SubjectId })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+<br />
+@{ Html.RenderAction("Exams", "Careers"); }

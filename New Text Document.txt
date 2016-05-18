@@ -1,0 +1,12 @@
+create table Careers (
+CareerId int primary key identity(1, 1),
+CareerName nvarchar(150),
+Status bit default 'true'
+)
+
+create table Subjects (
+SubjectId int primary key identity(1, 1),
+CareerId int,
+Subject nvarchar(150),
+Status bit default 'true'
+)

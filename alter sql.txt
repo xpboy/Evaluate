@@ -1,0 +1,66 @@
+select * from AspNetUsers
+
+select * from AspNetUserRoles
+
+select * from AspNetRoles
+
+select u.Id, u.Email, u.Name, u.LastName, c.CareerName, sc.StartDate, sc.EndDate, s.Status, sc.StatusId
+from AspNetUsers u
+left join Students s on u.Id = s.UserId
+left join StudentCareers sc on s.StudentId = sc.StudentId
+left join Careers c on sc.CareerId = c.CareerId
+where u.EmailConfirmed = 1
+	and s.Status = 1
+	and sc.StatusId != 0
+	and GETDATE() between sc.StartDate and sc.EndDate
+order by sc.StartDate
+
+
+select * from StudentCareers
+
+select * from plans
+
+select * from Evaluations
+
+select DATEADD(month, 1/2, getdate()), DATEADD(day, 10, getdate()), getdate()
+
+alter table plans add
+/*Interval varchar(20),
+Increment int,*/
+--Orden int
+
+alter table StudentCareers add
+Interval varchar(20),
+Increment int
+
+update StudentCareers set 
+	Interval = 'MONTH',
+	Increment = 1
+
+
+	createdBy = 1,
+	PlanId = 1,
+	Months = 1,
+	Price = 50
+
+alter table StudentCareers add
+PlanId int,
+Months int,
+StartDate datetime,
+EndDate datetime,
+Price decimal(10,2)
+
+create table Plans (
+PlanId int primary key identity(1, 1),
+PlanName varchar(50),
+Months int,
+Price decimal(10,2),
+Status bit default 'true'
+)
+
+update StudentCareers set
+	StartDate = CreatedDate,
+	EndDate = DATEADD(month, 1, CreatedDate)
+
+select DATEADD(month, 0.5, getdate()), DATEADD(month, 1, getdate())
+

@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17C15522-7FF3-4B23-B734-5187F7E6876D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Evaluate</RootNamespace>
+    <AssemblyName>Evaluate</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi">
+      <HintPath>..\packages\SendGrid.SmtpApi.1.3.1\lib\net40\SendGrid.SmtpApi.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGridMail">
+      <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGridMail.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actions\Navigation.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Answers1Controller.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
+    <Compile Include="Controllers\CareersController.cs" />
+    <Compile Include="Controllers\EvaluationsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinksController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\ResultController.cs" />
+    <Compile Include="Controllers\StudentCareersController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Answer.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Career.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomActionFilterAttribute.cs" />
+    <Compile Include="Models\CustomValidation.cs" />
+    <Compile Include="Models\Evaluation.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluationDetail.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluationQuestion.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IAnswer.cs" />
+    <Compile Include="Models\IAspNetUser.cs" />
+    <Compile Include="Models\ICareer.cs" />
+    <Compile Include="Models\IEvaluation.cs" />
+    <Compile Include="Models\IEvaluationQuestion.cs" />
+    <Compile Include="Models\ILink.cs" />
+    <Compile Include="Models\IPerson.cs" />
+    <Compile Include="Models\IPlan.cs" />
+    <Compile Include="Models\IQuestion.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EvaluateModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EvaluateModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluateModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluateModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EvaluateModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IEvaluationDetail.cs" />
+    <Compile Include="Models\IStudent.cs" />
+    <Compile Include="Models\IStudentCareer.cs" />
+    <Compile Include="Models\ISubject.cs" />
+    <Compile Include="Models\Link.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plan.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StudentCareer.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>EvaluateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Common.cs" />
+    <Compile Include="Repository\Utility.cs" />
+    <Compile Include="ViewModels\ExamViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Repository\Email.cs" />
+    <Compile Include="ViewModels\Navigation.cs" />
+    <Compile Include="ViewModels\StudentNav.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\_Roles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custome.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\dashboard.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\750x450.png" />
+    <Content Include="miminium-master\asset\css\bootstrap.min.css" />
+    <Content Include="miminium-master\asset\css\jquery.ui.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\animate.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\bootstrap-material-datetimepicker.css" />
+    <Content Include="miminium-master\asset\css\plugins\codemirror.css" />
+    <Content Include="miminium-master\asset\css\plugins\datatables.bootstrap.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\dropzone.css" />
+    <Content Include="miminium-master\asset\css\plugins\font-awesome.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\fullcalendar.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\handsontable.full.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\hover.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\all.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\aero%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\aero.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\aero.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\blue%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\blue.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\blue.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\flat%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\flat.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\flat.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\green%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\green.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\green.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\grey%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\grey.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\grey.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\orange%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\orange.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\orange.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\pink%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\pink.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\pink.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\purple%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\purple.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\purple.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\red%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\red.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\red.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\yellow%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\yellow.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\yellow.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\flat\_all.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\futurico\futurico%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\futurico\futurico.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\futurico\futurico.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\aero.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\blue.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\green.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\grey.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\line%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\line.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\line.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\orange.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\pink.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\purple.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\red.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\yellow.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\line\_all.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\aero%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\aero.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\aero.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\blue%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\blue.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\blue.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\green%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\green.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\green.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\grey%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\grey.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\grey.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\minimal%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\minimal.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\minimal.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\orange%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\orange.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\orange.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\pink%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\pink.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\pink.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\purple%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\purple.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\purple.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\red%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\red.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\red.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\yellow%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\yellow.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\yellow.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\minimal\_all.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\polaris\polaris%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\polaris\polaris.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\polaris\polaris.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\aero%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\aero.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\aero.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\blue%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\blue.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\blue.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\green%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\green.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\green.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\grey%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\grey.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\grey.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\orange%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\orange.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\orange.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\pink%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\pink.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\pink.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\purple%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\purple.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\purple.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\red%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\red.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\red.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\square%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\square.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\square.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\yellow%402x.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\yellow.css" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\yellow.png" />
+    <Content Include="miminium-master\asset\css\plugins\icheck\skins\square\_all.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.skinFlat.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.skinHTML5.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.skinModern.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.skinNice.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\ion.rangeSlider.skinSimple.css" />
+    <Content Include="miminium-master\asset\css\plugins\ionrangeslider\normalize.css" />
+    <Content Include="miminium-master\asset\css\plugins\jquery.steps.css" />
+    <Content Include="miminium-master\asset\css\plugins\mediaelementplayer.css" />
+    <Content Include="miminium-master\asset\css\plugins\normalize.css" />
+    <Content Include="miminium-master\asset\css\plugins\nouislider.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\select2.min.css" />
+    <Content Include="miminium-master\asset\css\plugins\simple-line-icons.css" />
+    <Content Include="miminium-master\asset\css\plugins\spinkit.css" />
+    <Content Include="miminium-master\asset\css\plugins\summernote.css" />
+    <Content Include="miminium-master\asset\css\plugins\typebase.css" />
+    <Content Include="miminium-master\asset\css\style.css" />
+    <Content Include="miminium-master\asset\fonts\fontawesome-webfont.svg" />
+    <Content Include="miminium-master\asset\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="miminium-master\asset\fonts\Simple-Line-Icons.svg" />
+    <Content Include="miminium-master\asset\img\avatar.jpg" />
+    <Content Include="miminium-master\asset\img\avatar3.png" />
+    <Content Include="miminium-master\asset\img\bg.svg" />
+    <Content Include="miminium-master\asset\img\bigplay.svg" />
+    <Content Include="miminium-master\asset\img\controls.png" />
+    <Content Include="miminium-master\asset\img\controls.svg" />
+    <Content Include="miminium-master\asset\img\g3986.png" />
+    <Content Include="miminium-master\asset\img\left-bg.png" />
+    <Content Include="miminium-master\asset\img\left-bg2.png" />
+    <Content Include="miminium-master\asset\js\bootstrap.min.js" />
+    <Content Include="miminium-master\asset\js\jquery.min.js" />
+    <Content Include="miminium-master\asset\js\jquery.ui.min.js" />
+    <Content Include="miminium-master\asset\js\main.js" />
+    <Content Include="miminium-master\asset\js\plugins\bootstrap-material-datetimepicker.js" />
+    <Content Include="miminium-master\asset\js\plugins\chart.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\clipboard.js" />
+    <Content Include="miminium-master\asset\js\plugins\codemirror.js" />
+    <Content Include="miminium-master\asset\js\plugins\datatables.bootstrap.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\dropzone.js" />
+    <Content Include="miminium-master\asset\js\plugins\flashmediaelement.swf" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\annotating\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-interacting\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-multiple\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\date.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\background.png" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\basic-options\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\basic-usage\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\canvas\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\categories\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\examples.css" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\image\hs-2004-27-a-large-web.jpg" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\image\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\interacting\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\navigate\arrow-down.gif" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\navigate\arrow-left.gif" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\navigate\arrow-right.gif" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\navigate\arrow-up.gif" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\navigate\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\percentiles\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\realtime\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\resize\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\selection\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\series-errorbars\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\series-pie\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\series-toggle\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\series-types\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\shared\jquery-ui\jquery-ui.min.css" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\shared\jquery-ui\jquery-ui.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\stacking\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\symbols\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\threshold\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\tracking\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\visitors\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\zooming\index.html" />
+    <Content Include="miminium-master\asset\js\plugins\flot\excanvas.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\excanvas.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.colorhelpers.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.colorhelpers.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.canvas.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.canvas.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.categories.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.categories.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.crosshair.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.crosshair.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.errorbars.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.errorbars.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.fillbetween.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.fillbetween.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.image.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.image.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.navigate.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.navigate.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.pie.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.resize.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.selection.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.selection.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.stack.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.stack.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.symbol.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.symbol.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.threshold.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.threshold.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.time.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.flot.time.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\jquery.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\flot\LICENSE.txt" />
+    <Content Include="miminium-master\asset\js\plugins\fullcalendar.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\handsontable.full.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\holder.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\html5shiv.js" />
+    <Content Include="miminium-master\asset\js\plugins\icheck.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\ie9.js" />
+    <Content Include="miminium-master\asset\js\plugins\imagesloaded.pkgd.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\ion.rangeSlider.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.datatables.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.flot.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.knob.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.mask.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.mobile-1.4.5.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.nicescroll.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.sparkline.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.steps.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.validate.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.vmap.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.vmap.sampledata.js" />
+    <Content Include="miminium-master\asset\js\plugins\jquery.vmap.world.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.africa.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.asia.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.australia.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.europe.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.north-america.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\jquery.vmap.south-america.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\continents\readme.txt" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.algeria.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.argentina.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.brazil.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.europe.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.france.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.germany.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.greece.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.iran.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.iraq.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.russia.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.usa.js" />
+    <Content Include="miminium-master\asset\js\plugins\maps\jquery.vmap.world.js" />
+    <Content Include="miminium-master\asset\js\plugins\masonry.pkgd.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\mediaelement-and-player.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\moment.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\morris.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\nouislider.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\raphael.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\respond.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\select2.full.min.js" />
+    <Content Include="miminium-master\asset\js\plugins\silverlightmediaelement.xap" />
+    <Content Include="miminium-master\asset\js\plugins\summernote.min.js" />
+    <Content Include="Models\EvaluateModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EvaluateModel.edmx</DependentUpon>
+      <LastGenOutput>EvaluateModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EvaluateModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EvaluateModel.edmx</DependentUpon>
+      <LastGenOutput>EvaluateModel.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\EvaluateModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EvaluateModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EvaluateModel.edmx.diagram">
+      <DependentUpon>EvaluateModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="miminium-master\asset\fonts\fontawesome-webfont.eot" />
+    <Content Include="miminium-master\asset\fonts\fontawesome-webfont.ttf" />
+    <Content Include="miminium-master\asset\fonts\fontawesome-webfont.woff" />
+    <Content Include="miminium-master\asset\fonts\fontawesome-webfont.woff2" />
+    <Content Include="miminium-master\asset\fonts\FontAwesome.otf" />
+    <Content Include="miminium-master\asset\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="miminium-master\asset\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="miminium-master\asset\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="miminium-master\asset\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="miminium-master\asset\fonts\Simple-Line-Icons.eot" />
+    <Content Include="miminium-master\asset\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="miminium-master\asset\fonts\Simple-Line-Icons.woff" />
+    <Content Include="miminium-master\asset\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\.DS_Store" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth-1.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth-2.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth-3.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth-4.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth-5.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-eu-gdp-growth.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-japan-gdp-growth.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\ajax\data-usa-gdp-growth.json" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\africa" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\antarctica" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\asia" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\australasia" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\backward" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\etcetera" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\europe" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\factory" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\iso3166.tab" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\leapseconds" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\northamerica" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\pacificnew" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\solar87" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\solar88" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\solar89" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\southamerica" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\systemv" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\yearistype.sh" />
+    <Content Include="miminium-master\asset\js\plugins\flot\examples\axes-time-zones\tz\zone.tab" />
+    <Content Include="modern-business-1.0.5\bin\contact_me.php" />
+    <Content Include="modern-business-1.0.5\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="modern-business-1.0.5\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="modern-business-1.0.5\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="modern-business-1.0.5\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\bordered-pulled.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\core.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\fixed-width.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\font-awesome.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\icons.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\larger.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\list.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\mixins.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\path.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\rotated-flipped.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\spinning.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\stacked.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\less\variables.less" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\font-awesome.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_core.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_icons.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_larger.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_list.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_mixins.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_path.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_spinning.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_stacked.scss" />
+    <Content Include="modern-business-1.0.5\font-awesome\scss\_variables.scss" />
+    <Content Include="modern-business-1.0.5\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="modern-business-1.0.5\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="modern-business-1.0.5\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="modern-business-1.0.5\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\Dev-MWH.pubxml" />
+    <None Include="Properties\PublishProfiles\local-dev-JE.pubxml" />
+    <None Include="Properties\PublishProfiles\local-dev.pubxml" />
+    <None Include="Properties\PublishProfiles\local-JE.pubxml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\Prod-MWH.pubxml" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="modern-business-1.0.5\css\bootstrap.css" />
+    <Content Include="modern-business-1.0.5\css\bootstrap.min.css" />
+    <Content Include="modern-business-1.0.5\css\modern-business.css" />
+    <Content Include="modern-business-1.0.5\font-awesome\css\font-awesome.css" />
+    <Content Include="modern-business-1.0.5\font-awesome\css\font-awesome.min.css" />
+    <Content Include="modern-business-1.0.5\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="modern-business-1.0.5\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="modern-business-1.0.5\js\bootstrap.js" />
+    <Content Include="modern-business-1.0.5\js\bootstrap.min.js" />
+    <Content Include="modern-business-1.0.5\js\contact_me.js" />
+    <Content Include="modern-business-1.0.5\js\jqBootstrapValidation.js" />
+    <Content Include="modern-business-1.0.5\js\jquery.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Details.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
+    <Content Include="Views\Subjects\List.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Evaluation\EditorTemplates\QuestionViewModel.cshtml" />
+    <Content Include="Views\Evaluation\Index.cshtml" />
+    <Content Include="Views\Evaluation\Results.cshtml" />
+    <Content Include="Views\Evaluation\EditorTemplates\ResultDetailViewModel.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Answers\Delete.cshtml" />
+    <Content Include="Views\Answers\Details.cshtml" />
+    <Content Include="Views\Answers\Edit.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
+    <Content Include="Views\Careers\Create.cshtml" />
+    <Content Include="Views\Careers\Delete.cshtml" />
+    <Content Include="Views\Careers\Details.cshtml" />
+    <Content Include="Views\Careers\Edit.cshtml" />
+    <Content Include="Views\Careers\Index.cshtml" />
+    <Content Include="Views\Shared\_PublicLayout.cshtml" />
+    <Content Include="Views\Careers\Subjects.cshtml" />
+    <Content Include="Views\Subjects\Questions.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Evaluations\Exams.cshtml" />
+    <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\Evaluations\EditorTemplates\QuestionViewModel.cshtml" />
+    <Content Include="Views\Evaluations\EditorTemplates\ResultDetailViewModel.cshtml" />
+    <Content Include="Views\Evaluations\Exam.cshtml" />
+    <Content Include="Views\Evaluations\EditorTemplates\AnswerViewModel.cshtml" />
+    <Content Include="Views\Evaluations\EditorTemplates\_Question.cshtml" />
+    <Content Include="Views\Evaluations\Show.cshtml" />
+    <Content Include="Views\Evaluations\_Result.cshtml" />
+    <Content Include="Views\Evaluations\ResultDetails.cshtml" />
+    <Content Include="Views\Evaluations\Results.cshtml" />
+    <Content Include="Views\Evaluations\NoResults.cshtml" />
+    <Content Include="Views\Shared\_AdminMenu.cshtml" />
+    <Content Include="Views\Careers\_Exams.cshtml" />
+    <Content Include="Views\Careers\_Results.cshtml" />
+    <Content Include="Views\Main\Waiting.cshtml" />
+    <Content Include="Views\People\Create.cshtml" />
+    <Content Include="Views\People\Delete.cshtml" />
+    <Content Include="Views\People\Details.cshtml" />
+    <Content Include="Views\People\Edit.cshtml" />
+    <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\Delete.cshtml" />
+    <Content Include="Views\Students\Details.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\Index.cshtml" />
+    <Content Include="Views\Students\Authorize.cshtml" />
+    <Content Include="Views\Account\SendUserConfirmation.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Main\Dashboard.cshtml" />
+    <Content Include="Views\Shared\_Miminium.cshtml" />
+    <Content Include="Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="Views\Shared\_MobileMenu.cshtml" />
+    <Content Include="Views\Shared\_Authenticate.cshtml" />
+    <Content Include="Views\Answers1\Create.cshtml" />
+    <Content Include="Views\Answers1\Delete.cshtml" />
+    <Content Include="Views\Answers1\Details.cshtml" />
+    <Content Include="Views\Answers1\Edit.cshtml" />
+    <Content Include="Views\Answers1\Index.cshtml" />
+    <Content Include="Views\StudentCareers\Create.cshtml" />
+    <Content Include="Views\StudentCareers\Delete.cshtml" />
+    <Content Include="Views\StudentCareers\Details.cshtml" />
+    <Content Include="Views\StudentCareers\Edit.cshtml" />
+    <Content Include="Views\StudentCareers\Index.cshtml" />
+    <Content Include="Views\StudentCareers\Cancel.cshtml" />
+    <Content Include="Views\Evaluations\Reset.cshtml" />
+    <Content Include="Views\Plans\Create.cshtml" />
+    <Content Include="Views\Plans\Delete.cshtml" />
+    <Content Include="Views\Plans\Details.cshtml" />
+    <Content Include="Views\Plans\Edit.cshtml" />
+    <Content Include="Views\Plans\Index.cshtml" />
+    <Content Include="Views\Students\Suscriptions.cshtml" />
+    <Content Include="Views\Students\_StudentSuscriptions.cshtml" />
+    <Content Include="Views\Links\Create.cshtml" />
+    <Content Include="Views\Links\Delete.cshtml" />
+    <Content Include="Views\Links\Details.cshtml" />
+    <Content Include="Views\Links\Edit.cshtml" />
+    <Content Include="Views\Links\Index.cshtml" />
+    <Content Include="Views\Home\Links.cshtml" />
+    <Content Include="Views\Home\Subscriptions.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="files\templates\" />
+    <Folder Include="images\questions\" />
+    <Folder Include="MetaData\" />
+    <Folder Include="miminium-master\asset\media\" />
+    <Folder Include="Views\Navigation\" />
+    <Folder Include="Views\Result\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61238</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61238/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,81 @@
+﻿@model ViewModels.ExamViewModel
+
+@{
+    ViewBag.Title = "Resultado";
+}
+
+
+@using (Html.BeginForm())
+{
+    { Html.RenderAction("Result", "Evaluations", new { id = Model.EvaluationId }); }
+    @*@{ Html.RenderAction("Items", new { requestId = Model.Id }); }*@
+
+    @Html.AntiForgeryToken()
+
+    @*@Html.EditorFor(x => x.Questions)*@
+    foreach (var q in Model.Questions)
+    {
+        <div>
+            @*@Html.HiddenFor(x => x.Sequence)
+                @Html.HiddenFor(x => x.QuestionId)*@
+            @*@Html.TextBoxFor(x=>x.QuestionId)*@
+            @*<h4>@Model.QuestionId, @Model.Sequence</h4>*@
+            @*<h3> @q.Sequence) @q.QuestionName </h3>*@
+            @if (q.SelectedAnswer == q.CorrectAnswerId && q.SelectedAnswer == q.CorrectAnswerId)
+            {
+                <h3><span class="glyphicon glyphicon-ok icon-green" aria-hidden="true"></span> @q.Sequence) @q.QuestionName </h3>
+            }
+            else
+            {
+                <h3><span class="glyphicon glyphicon-remove icon-red" aria-hidden="true"></span> @q.Sequence) @q.QuestionName </h3>
+            }
+            @foreach (var a in q.Answers)
+            {
+                @*@Html.HiddenFor(x => x.QuestionId)*@
+                @*<p>
+                            @Html.RadioButtonFor(b => q.SelectedAnswer, a.AnswerId)  @a.AnswerName
+                    </p>*@
+                <p>
+                    @if (q.SelectedAnswer == 0)
+                    {
+                        Html.RadioButtonFor(b => q.SelectedAnswer, a.AnswerId); @a.AnswerName;
+                    }
+                    else
+                    {
+                        //if (q.SelectedAnswer == q.CorrectAnswerId)
+                        //{
+                        if (q.SelectedAnswer == a.AnswerId)
+                        {
+                            if (q.SelectedAnswer == q.CorrectAnswerId)
+                            {
+                                <span class="glyphicon glyphicon-ok icon-green" aria-hidden="true"></span>
+                                <input type="checkbox" checked=@q.IsCorrect disabled="disabled" />@a.AnswerName; <span class="label label-success">Respuesta Correcta</span>
+                        @*@Html.RadioButtonFor(b => q.SelectedAnswer, q.IsCorrect, new { Checked = "checked" }); @a.AnswerName;*@
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-remove icon-red" aria-hidden="true"></span>
+                                <input type="checkbox" checked="checked" disabled="disabled" />@a.AnswerName; <span class="label label-danger">Respuesta Incorrecta</span>
+                            }
+                        }
+                        else
+                        {
+                            if (q.CorrectAnswerId == a.AnswerId)
+                            {
+                                <span class="glyphicon glyphicon-ok icon-green" aria-hidden="true"></span>
+                                <input type="checkbox" disabled="disabled" />@a.AnswerName;
+                            }
+                            else
+                            {
+                                <span class="glyphicon glyphicon-remove icon-red" aria-hidden="true"></span>
+                                <input type="checkbox" disabled="disabled" />@a.AnswerName;
+                            }
+                        }
+                    }
+                    </p>
+            }
+        </div>
+    }
+}
+
+@*@Html.RadioButtonFor(model => model.Status, true, new { Checked = "checked" }) Activa*@

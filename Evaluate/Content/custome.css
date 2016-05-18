@@ -1,0 +1,16 @@
+﻿/*Miminium*/
+.boxed #content .col-md-12{
+    /*padding-right: 0px !important;*/
+}
+
+.icon-red {
+    color: #F83C3C;
+}
+
+.icon-green {
+    color: rgb(57, 198, 5);
+}
+
+#content{
+    color:#424040;
+}

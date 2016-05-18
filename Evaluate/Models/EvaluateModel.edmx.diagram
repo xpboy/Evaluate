@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e68a75ff92ec460c9ee88751833f288e" Name="Diagram1">
+        <EntityTypeShape EntityType="EvaluateModel.sysdiagram" Width="1.5" PointX="9" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EvaluateModel.Evaluation" Width="1.5" PointX="4.375" PointY="3.625" />
+        <EntityTypeShape EntityType="EvaluateModel.StudentCareer" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="EvaluateModel.Career" Width="1.5" PointX="1.375" PointY="4.875" />
+        <AssociationConnector Association="EvaluateModel.FK__StudentCa__Caree__4316F928" />
+        <EntityTypeShape EntityType="EvaluateModel.Answer" Width="1.5" PointX="7.125" PointY="0.75" />
+        <EntityTypeShape EntityType="EvaluateModel.Question" Width="1.5" PointX="4.875" PointY="0.625" />
+        <AssociationConnector Association="EvaluateModel.FK_dbo_Answers_dbo_Questions_QuestionId" />
+        <EntityTypeShape EntityType="EvaluateModel.Subject" Width="1.5" PointX="1.125" PointY="0.75" />
+        <AssociationConnector Association="EvaluateModel.FK_Subjects_Careers" />
+        <AssociationConnector Association="EvaluateModel.FK_Evaluations_Subjects" />
+        <AssociationConnector Association="EvaluateModel.FK_dbo_Questions_dbo_Subjects_SubjectId" />
+        <EntityTypeShape EntityType="EvaluateModel.EvaluationDetail" Width="1.5" PointX="10.375" PointY="4.125" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationDetails_Answers" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationDetails_Evaluations" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationDetails_Questions" />
+        <EntityTypeShape EntityType="EvaluateModel.EvaluationQuestion" Width="1.5" PointX="11.375" PointY="0.75" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationQuestions_Answers1" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationQuestions_Evaluations" />
+        <AssociationConnector Association="EvaluateModel.FK_EvaluationQuestions_Questions" />
+        <EntityTypeShape EntityType="EvaluateModel.Person" Width="1.5" PointX="1.875" PointY="8.875" />
+        <AssociationConnector Association="EvaluateModel.FK_Evaluations_Careers" />
+        <EntityTypeShape EntityType="EvaluateModel.AspNetUser" Width="1.5" PointX="4.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EvaluateModel.Student" Width="1.5" PointX="6.375" PointY="5" />
+        <AssociationConnector Association="EvaluateModel.FK_Evaluations_Students" />
+        <AssociationConnector Association="EvaluateModel.FK_StudentCareers_Students" />
+        <EntityTypeShape EntityType="EvaluateModel.Plan" Width="1.5" PointX="6.375" PointY="8.875" />
+        <AssociationConnector Association="EvaluateModel.FK_StudentCareers_Plans" />
+        <EntityTypeShape EntityType="EvaluateModel.Link" Width="1.5" PointX="8.375" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

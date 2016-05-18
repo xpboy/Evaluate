@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+    {
+        @Html.AntiForgeryToken()
+
+        @*<img src="~/miminium-master/asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir<span class="fa fa-power-off "></span></a></li>
+        </ul>*@
+
+    <ul class="nav navbar-nav navbar-right user-nav">
+        <li class="user-name"><span>@User.Identity.GetUserName()</span></li>
+        <li class="dropdown avatar-dropdown">
+            <img src="~/miminium-master/asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+            <ul class="dropdown-menu user-dropdown">
+                @*<li><a href="@Url.Action("Index", "Manage")"><span class="fa fa-user"></span> Mi Perfil</a></li>*@
+                <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-power-off"></span> Salir</a></li>
+                @*<li role="separator" class="divider"></li>
+                <li class="more">
+                    <ul>
+                        <li><a href=""><span class="fa fa-cogs"></span></a></li>
+                        <li><a href=""><span class="fa fa-lock"></span></a></li>
+                        <li><a href=""><span class="fa fa-power-off "></span></a></li>
+                    </ul>
+                </li>*@
+            </ul>
+        </li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right user-nav">
+        <li class="user-name"><span>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</span></li> 
+        <li class="user-name"><span>@Html.ActionLink("Iniciar Sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</span></li>
+    </ul>
+}
+
+
+@*@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Iniciar Sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@

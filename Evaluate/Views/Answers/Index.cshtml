@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Evaluate.Models.Answer>
+
+@{
+    ViewBag.Title = "Respuestas";
+}
+
+<h2>Respuestas para:</h2>
+<h3>@ViewBag.Question</h3>
+
+<p>
+    @Html.ActionLink("Crear Nueva ", "Create", new { questionId = ViewBag.QuestionId }) <strong>Respuesta</strong>
+</p>
+@{int rowNo = 1;}
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnswerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCorrect)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @rowNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnswerName)
+        </td>
+        <td>
+            @if (item.IsCorrect == true)
+            {
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            }
+            else
+            {
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            }
+            @*@Html.DisplayFor(modelItem => item.IsCorrect)*@
+        </td>
+        <td>
+            @if (item.Status == true)
+            {
+                <span class="label label-success">Activa</span>
+            }
+            else
+            {
+                <span class="label label-danger">Desactiva</span>
+            }
+            @*@Html.DisplayFor(modelItem => item.Status)*@
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.AnswerId }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.AnswerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AnswerId })*@
+        </td>
+    </tr>
+    rowNo++;
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Regresar a las Preguntas", "Index", "Questions", new { subjectId = ViewBag.SubjectId }, null)
+</div>

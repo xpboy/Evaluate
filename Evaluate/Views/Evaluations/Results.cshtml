@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Evaluate.Models.Evaluation>
+
+@{
+    ViewBag.Title = "Resultados";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject.SubjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionsInExam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr onclick="location.href = '@(Url.Action("ResultDetails", "Evaluations", new { id = item.EvaluationId }))'">
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionsInExam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinScore)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+@{ Html.RenderAction("Results", "Careers"); }

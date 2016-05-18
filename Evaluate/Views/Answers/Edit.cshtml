@@ -1,0 +1,127 @@
+﻿@model Evaluate.Models.Answer
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+@*@using (Html.BeginForm("Index", "Answers", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "myFunction()" }))*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Respuesta</h4>
+        <h3>@ViewBag.QuestionName</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.AnswerId)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.AnswerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AnswerName, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.TextAreaFor(model => model.AnswerName, new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.AnswerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsCorrect, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.IsCorrect, true) Correcta
+                </div>
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.IsCorrect, false) Incorrecta
+                </div>
+                <div class="checkbox">     
+                    @*<input type="checkbox" checked=@Model.IsCorrect id="chkIsCorrect" onclick="myFunction()" />*@             
+                    @*@Html.EditorFor(model => model.IsCorrect)*@
+                    @Html.ValidationMessageFor(model => model.IsCorrect, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, true) Activa
+                </div>
+                <div class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, false) Desactiva
+                </div>
+                <div class="checkbox">
+                    @*<input type="checkbox" checked=@Model.Status />*@
+                    @*@Html.EditorFor(model => model.Status)*@
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+<script type="text/javascript">
+    function myFunction() {
+        var chk = document.getElementById("chkIsCorrect").checked;
+        if (chk == true) {
+            if (!confirm("¿Desea guardar esta respuesta como correcta?")) {
+                document.getElementById("chkIsCorrect").checked = false;
+                //returnToPreviousPage();
+                //return false;
+            }
+        }
+    }
+</script>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submit").on("click", function () {
+            alert('Your Message');
+        });
+
+    });
+</script>*@
+
+
+
+@*<script>
+    $(function () {
+        $("#submit").click(function (event) {
+            event.preventDefault();
+            $('<div title="Confirm Box"></div>').dialog({
+                open: function (event, ui) {
+                    $(this).html("Yes or No question?");
+                },
+                close: function () {
+                    $(this).remove();
+                },
+                resizable: false,
+                height: 140,
+                modal: true,
+                buttons: {
+                    'Yes': function () {
+                        $(this).dialog('close');
+                        //$.post('url/theValueYouWantToPass');
+
+                    },
+                    'No': function () {
+                        $(this).dialog('close');
+                        //$.post('url/theOtherValueYouWantToPAss');
+                    }
+                }
+            });
+        });
+    });
+</script>*@

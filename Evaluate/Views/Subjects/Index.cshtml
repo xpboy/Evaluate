@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Evaluate.Models.Subject>
+
+@{
+    ViewBag.Title = "Materias";
+}
+
+<h2>Materias para:</h2>
+<h3>@ViewBag.TopName</h3>
+
+<p>
+    @Html.ActionLink("Crear Nueva ", "Create") <strong>Materia</strong>
+</p>
+@{int rowNo = 1;}
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionsInExam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>            
+           @rowNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectName)
+        </td>
+        <td>
+            @if (item.Status == true)
+            {
+                <span class="label label-success">Activa</span>
+            }
+            else
+            {
+                <span class="label label-danger">Desactiva</span>
+            }
+            @*@Html.DisplayFor(modelItem => item.Status)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionsInExam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinScore)
+        </td>
+        <td>
+            @Html.ActionLink("Preguntas", "Index", "Questions", new { subjectId = item.SubjectId }, null) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.SubjectId }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.SubjectId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SubjectId })*@
+        </td>
+    </tr>
+    rowNo++;
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Regresar a las Carreras", "Index", "Careers")
+</div>

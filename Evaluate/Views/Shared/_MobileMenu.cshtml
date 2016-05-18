@@ -1,0 +1,73 @@
+﻿<div id="mimin-mobile" class="reverse" style="background-color: rgb(255, 102, 86);">
+    <div class="mimin-mobile-menu-list">
+        <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
+            <ul class="nav nav-list">
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="ripple">
+                        <a href="@Url.Action("Index","Careers")"><span class="icons icon-plane"></span>Carreras</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Index", "Subjects")"><span class="fa fa-server"></span>Materias</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Index", "Account")"><span class="icons icon-user-following"></span>Autorizar Estudiantes</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Index", "Students")"><span class="icons icon-people"></span>Suscripciones</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Index", "StudentCareers")"><span class="icons icon-clock"></span>Susc. Pendientes</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Index", "Links")"><span class="icons icon-pin"></span>Enlaces</a>
+                    </li>
+                }
+                
+                @if (User.IsInRole("Student"))
+                {
+                    <li class="ripple">
+                        <a href="@Url.Action("Exams", "Evaluations")"><span class="icons icon-note"></span>Examenes</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Results", "Evaluations")"><span class="icons icon-chart"></span>Resultados</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Create", "StudentCareers")"><span class="icons icon-grid"></span>Nueva Suscripción</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Suscriptions", "Students")"><span class="icons icon-people"></span>Suscripciones</a>
+                    </li>
+                }  
+                <li class="ripple">
+                    <a href="@Url.Action("Index", "Home")"><span class="icons icon-home"></span>Inicio</a>
+                </li>
+                <li class="ripple">
+                    <a href="@Url.Action("About", "Home")"><span class="icons icon-cup"></span>Nosotros</a>
+                </li>
+                <li class="ripple">
+                    <a href="@Url.Action("Subscriptions", "Home")"><span class="icons icon-book-open"></span>Subscripciones</a>
+                </li>
+                <li class="ripple">
+                    <a href="@Url.Action("Links", "Home")"><span class="icons icon-link"></span>Enlaces Externos</a>
+                </li>
+                <li class="ripple">
+                    <a href="@Url.Action("Contact", "Home")"><span class="icons icon-bubbles"></span>Contacto</a>
+                </li>
+                @using Microsoft.AspNet.Identity
+                @if (!Request.IsAuthenticated)
+                {
+                    <li class="ripple">
+                        <a href="@Url.Action("Register", "Account")"><span class="icons icon-note"></span>Registrar</a>
+                    </li>
+                    <li class="ripple">
+                        <a href="@Url.Action("Login", "Account")"><span class="icons icon-login"></span>Iniciar Sesión</a>
+                    </li>
+                }             
+            </ul>
+        </div>
+    </div>
+</div>
+<button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">
+    <span class="fa fa-bars"></span>
+</button>

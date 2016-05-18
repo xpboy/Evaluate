@@ -1,0 +1,9 @@
+﻿@model ViewModels.Evaluation
+<h2>Exámen</h2>
+@using (Html.BeginForm())
+{
+    <hr />
+    @Html.EditorFor(x => x.Questions)
+    <hr />
+    <input type="submit" value="Guardar Exámen" />
+}

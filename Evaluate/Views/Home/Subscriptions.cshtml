@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Evaluate.Models.Plan>
+
+@{
+    ViewBag.Title = "Subscripciones";
+}
+
+<div class="panel">
+    <div class="panel-body">
+        <div class="col-md-12 col-sm-12">
+            <h3 class="animated fadeInLeft">Pro Aviation Test - @ViewBag.Title</h3>
+            <p class="animated fadeInDown"><span class="fa  fa-database"></span> Base de Estudios Examen del IDAC</p>
+        </div>
+    </div>
+</div>
+
+@*<ul class="list-group">
+    @foreach (var item in Model) {
+        <li class="list-group-item">
+            <span class="badge">RD$ @Html.DisplayFor(modelItem => item.Price)</span>
+            @Html.DisplayFor(modelItem => item.PlanName)
+        </li>
+    }
+    </ul>*@
+
+<div class="panel">
+    <div class="panel-body">
+        <!-- Intro Content -->
+        <div class="">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Interval)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Increment)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PlanName)
+                        </td>
+                        <td>
+                            RD$ @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Interval)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Increment)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>

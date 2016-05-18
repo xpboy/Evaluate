@@ -1,0 +1,56 @@
+﻿@model Evaluate.Models.Evaluation
+
+@{
+    ViewBag.Title = "Reiniciar";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<h3>Este examen ya fue iniciado, ¿Desea continuar ó reiniciar el mismo?</h3>
+<div>
+    <dl class="dl-horizontal">
+        @if (Model.Subject.SubjectName == null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Career.CareerName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Career.CareerName)
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject.SubjectName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Subject.SubjectName)
+            </dd>
+        }
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(x => x.EvaluationId)
+        @Html.HiddenFor(x => x.SubjectId)
+        @Html.HiddenFor(x => x.CareerId)
+        @Html.HiddenFor(x => x.StudentId)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.QuestionsInExam)
+        @Html.HiddenFor(x => x.MinScore)
+        @Html.HiddenFor(x => x.IsLastOne)
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" name="Action" value="Continuar" class="btn btn-success" />
+            <input type="submit" name="Action" value="Reiniciar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar", "Exams")
+        </div>
+    }
+</div>

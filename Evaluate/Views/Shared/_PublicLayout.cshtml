@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Pro Aviation Test</title>
+    @*@Styles.Render("~/miminium-master/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    @Styles.Render("~/miminium-master/asset/css/css")
+    @*@Styles.Render("~/Content/css/custome")*@
+
+    @*<link rel="shortcut icon" href="asset/img/logomi.png">*@
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="mimin" class="dashboard boxed container padding-0">
+    <!-- start: Header -->
+    <nav class="navbar container navbar-default header navbar-fixed-top">
+        <div class="col-md-12 nav-wrapper">
+            <div class="navbar-header" style="width:100%;">
+                <div class="opener-left-menu is-open">
+                    <span class="top"></span>
+                    <span class="middle"></span>
+                    <span class="bottom"></span>
+                </div>
+                @if (Request.IsAuthenticated) 
+                {
+                    @Html.ActionLink("Pro Aviation Test", "Index", "Main", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Pro Aviation Test", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })  
+                }
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <!-- end: Header -->
+
+    <div class="container-fluid mimin-wrapper bg-light-grey">
+
+        <!-- start:Left Menu -->
+        @Html.Partial("_LeftMenu")
+        <!-- end: Left Menu -->
+        <!-- start: content -->
+        <div id="content">
+
+
+            @*<div class="col-md-12" style="padding-top: 20px;">
+                <div class=" col-md-12" style="padding-bottom: 20px; background-color: white;">*@
+            @RenderBody()
+            @*</div>
+                </div>*@
+            @Html.Partial("_Footer")    
+        </div>
+        <!-- end: content -->
+
+    </div>
+
+    @*<div class="panel">
+        <div class="panel-body">
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Pro Aviation Test</p>
+            </footer>
+        </div>
+    </div>*@
+
+            <!-- start: Mobile -->
+            @Html.Partial("_MobileMenu")
+            <!-- end: Mobile -->
+            @Scripts.Render("~/miminium-master/asset/js/js")
+            @RenderSection("scripts", required: false)
+
+            <!-- end: Javascript -->
+</body>
+</html>

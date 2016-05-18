@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Evaluate.Models.SubscriptionsViewModel>
+
+@{
+    ViewBag.Title = "Suscripciones";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CareerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValidTime)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {            
+            <tr onclick="location.href = '@(Url.Action("Edit", "StudentCareers", new { Id = item.StudentCareerId }))'">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @if (item.StatusId == 0)
+                    {
+                        <span class="label label-danger">@Html.DisplayFor(modelItem => item.CareerName)</span>
+                    }
+                    else if (item.StatusId == 1)
+                    {
+                        <span class="label label-warning">@Html.DisplayFor(modelItem => item.CareerName)</span>
+                    }
+                    else if (item.StatusId == 2)
+                    {
+                        <span class="label label-success">@Html.DisplayFor(modelItem => item.CareerName)</span>
+                    }                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValidTime)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-4"><span class="label label-danger">No Autorizado</span></div>
+    <div class="col-xs-6 col-sm-4"><span class="label label-warning">Solicitado</span></div>
+    <div class="col-xs-6 col-sm-4"><span class="label label-success">Autorizado</span></div>
+</div>
+
+@*@model IEnumerable<Evaluate.Models.Student>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

@@ -1,0 +1,109 @@
+﻿@model Evaluate.Models.StudentCareer
+
+@{
+    ViewBag.Title = "Subscripción";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>StudentCareer</h4>
+        <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.StudentId)
+        @*@Html.HiddenFor(model => model.Months)*@
+        @Html.HiddenFor(model => model.Interval)
+        @Html.HiddenFor(model => model.Increment)
+        @Html.HiddenFor(model => model.Price)
+        @Html.HiddenFor(model => model.CreatedDate)
+        @Html.HiddenFor(model => model.CreatedBy)
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.StudentId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Student.C)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CareerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+@if (Model.StatusId == 1) {
+                @Html.DropDownList("CareerId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CareerId, "", new { @class = "text-danger" })
+}
+else if (Model.StatusId == 2 || Model.StatusId == 0)
+{
+    @Html.DisplayFor(model => model.Career.CareerName)
+}
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DisplayFor(model => model.CreatedDate)
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlanId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+@if (Model.StatusId == 1) {
+                @Html.DropDownList("PlanId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlanId, "", new { @class = "text-danger" })
+}
+else if (Model.StatusId == 2 || Model.StatusId == 0)
+{
+    @Html.DisplayFor(model => model.Plan.PlanName)
+}
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Months, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Months, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Months, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @if (Model.StatusId == 1) { 
+                    <input type="submit" name="Action" value="Autorizar" class="btn btn-success" />
+                    <input type="submit" name="Action" value="No Autorizar" class="btn btn-danger" />
+                }
+                else if (Model.StatusId == 2)
+                {
+                    @*@Html.ActionLink("Delete", "Delete", new { id=Model.Id })
+                    <a class="btn btn-link" href="~/images/questions/faa-ct-8080-3e.pdf" target="_blank"><span class="icons icon-picture"></span> Ver figura</a>
+                    <a href="@Url.Action("Delete", "StudentCareers", new { id = Model.Id })" class="btn btn-warning">Cancelar Subscripción</a>*@
+                    <input type="submit" name="Action" value="Cancelar" class="btn btn-danger" />
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar a la Lista", "Index", "StudentCareers")
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Evaluate.Models.Career>
+
+@{
+    ViewBag.Title = "Examen General";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionsInExam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinScore)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr onclick="location.href = '@(Url.Action("PreIndex", "Evaluations", new { careerId = item.CareerId }))'">
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionsInExam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinScore)
+        </td>
+    </tr>
+}
+
+</table>

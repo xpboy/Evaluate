@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<ViewModels.QuestionViewModel>
+@using PagedList.Mvc;
+@*<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+
+@*@model ViewModels.Exam*@
+
+<h2>Exámen</h2>
+@*@using (Html.BeginForm())
+    {*@
+<hr />
+@*@foreach (var item in Model)
+    {
+        @Html.EditorFor(modelItem => item.Questions)
+    }*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    foreach (var item in Model)
+    {
+        @Html.HiddenFor(x => item.QuestionId)
+        <h3> @item.Sequence) @item.Question</h3>
+        foreach (var a in item.Answers)
+        {
+            <p>
+                @Html.RadioButtonFor(b => item.SelectedAnswer, a.AnswerId)  @a.Answer
+            </p>
+        }
+    }
+    <hr />
+    <input type="submit" value="Guardar Exámen" />
+}
+<br />
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page = page }),
+        new PagedListRenderOptions
+        {
+            //LinkToFirstPageFormat = String.Format("<< Next"),
+            LinkToPreviousPageFormat = String.Format("<"),
+            LinkToNextPageFormat = String.Format(">"),
+            //LinkToLastPageFormat = String.Format("Last >>"),
+            MaximumPageNumbersToDisplay = 1
+        })
+
+@*@Html.EditorFor(x => x.Questions)*@
+
+@* } *@
+
+
+
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page = page }),
+            new PagedListRenderOptions {
+                //LinkToFirstPageFormat = "<< Primera",
+                LinkToPreviousPageFormat = "< Anterior",
+                LinkToNextPageFormat = "Siguiente >",
+                //LinkToLastPageFormat = "&Uacute;ltima >>"
+                MaximumPageNumbersToDisplay = 0
+            })
+
+        <br />
+    <h3>Default Paging Control</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
+    <h3>Minimal Paging Control</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
+
+    <h3>Minimal Paging Control w/ Page Count Text</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
+
+    <h3>Minimal Paging Control w/ Item Count Text</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
+
+    <h3>Page Numbers Only</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
+
+    <h3>Only Show Five Pages At A Time</h3>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)*@

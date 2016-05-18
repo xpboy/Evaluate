@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard - Administrador";
+}
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        @*<span class="icons icon-note"></span>*@
+                        <i class="icons icon-plane fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">26</div>*@
+                        <div><strong>Carreras</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Careers")">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Carreras</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-server fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">12</div>*@
+                        <div><strong>Materias</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Subjects")">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Materias</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="icons icon-user-following fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">12</div>*@
+                        <div><strong>Autorizar</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Account")">
+                <div class="panel-footer">
+                    <span class="pull-left">Autorizar Estudiantes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        @*<span class="icons icon-note"></span>*@
+                        <i class="icons icon-people fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">26</div>*@
+                        <div><strong>Subscripciones</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Students")">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Subscripciones</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="icon icon-clock fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">12</div>*@
+                        <div><strong>Subscripciones Pendientes</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "StudentCareers")">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Subsc. Pendientes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel" style="border: 1px solid #DEDEDE; border-left: 4px solid rgb(33, 150, 243);">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="icons icon-pin fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div><strong>Enlaces Mostrados</strong></div>
+                    </div>
+                </div>
+            </div>
+            <a href="@Url.Action("Index", "Links")">
+                <div class="panel-footer">
+                    <span class="pull-left">Ver Enlaces</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">26</div>
+                        <div>New Comments!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">12</div>
+                        <div>New Tasks!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">124</div>
+                        <div>New Orders!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>Support Tickets!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>*@
+

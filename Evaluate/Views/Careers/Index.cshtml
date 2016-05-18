@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Evaluate.Models.Career>
+
+@{
+    ViewBag.Title = "Carreras";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title</h2>
+</div>
+<br />
+
+<p>
+    @Html.ActionLink("Crear Nueva ", "Create") <strong>Carrera</strong>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CareerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareerName)
+        </td>
+        <td>
+            @if (item.Status == true)
+            {
+                <span class="label label-success">Activa</span>
+            }
+            else
+            {
+                <span class="label label-danger">Desactiva</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Materias", "Index", "Subjects", new { careerId = item.CareerId }, null) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.CareerId })           
+        </td>
+    </tr>
+}
+
+</table>

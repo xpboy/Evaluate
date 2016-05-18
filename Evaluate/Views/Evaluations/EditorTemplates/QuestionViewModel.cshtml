@@ -1,0 +1,42 @@
+﻿@model ViewModels.QuestionViewModel
+@*<div>
+    @Html.HiddenFor(x => x.QuestionId)
+    <h3> @Model.Sequence) @Model.Question </h3>
+
+    @foreach (var a in Model.Answers)
+    {
+        <p>
+            @Html.RadioButtonFor(b => b.SelectedAnswer, a.AnswerId)  @a.Answer
+        </p>
+
+    }
+</div>*@
+
+<div>    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(x => x.Sequence)
+    @Html.HiddenFor(x => x.QuestionId)
+    @*@Html.TextBoxFor(x=>x.QuestionId)*@
+    @*<h4>@Model.QuestionId, @Model.Sequence</h4>*@
+    
+    <div class="panel-heading bg-white">
+        <h3> @Model.Sequence) @Model.QuestionName </h3>
+    </div>
+    <br />
+    @foreach (var a in Model.Answers)
+    {
+        @Html.HiddenFor(x => x.QuestionId)
+        <p>            
+            @if (Model.SelectedAnswer != a.AnswerId)
+            { 
+                @Html.RadioButtonFor(b => b.SelectedAnswer, a.AnswerId)  @a.AnswerName
+            }
+            else
+            {
+                @Html.RadioButtonFor(b => b.SelectedAnswer, a.AnswerId, new { @checked = true })  @a.AnswerName 
+            }
+
+        </p>
+    }
+    @Html.ValidationMessageFor(model => model.SelectedAnswer, "", new { @class = "text-danger" })
+</div>

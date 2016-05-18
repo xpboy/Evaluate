@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Evaluate.Models.Student>
+
+@{
+    ViewBag.Title = "Autorizaciones Pendientes";
+}
+
+<h2>Autorizaciones Pendientes</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr onclick="location.href = '@(Url.Action("Edit", "Students", new { id = item.StudentId }))'">
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Name)
+        </td>
+        <td>
+            @if (item.Status == true)
+            {
+                <span class="label label-success">No Autorizado</span>
+            }
+            else
+            {
+                <span class="label label-danger">Autorizado</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+    </tr>
+}
+
+</table>

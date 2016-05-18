@@ -1,0 +1,84 @@
+﻿@model Evaluate.Models.Evaluation
+@{
+    ViewBag.Title = "Resultado";
+}
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title - @ViewBag.SubjectName</h2>
+</div>
+<br />
+
+<div class="col-md-12 padding-0">
+    <div class="col-md-4">
+        <div class="panel box-v1">
+            <div class="panel-heading bg-white border-none">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                    <h4 class="text-left">@Html.LabelFor(model => model.Score)</h4>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <h4>
+                        <span class="icon-calculator icons icon text-right"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="panel-body text-center">
+                <h1>@Model.Score</h1>
+                <p>@Html.LabelFor(model => model.Score)</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel box-v1">
+            <div class="panel-heading bg-white border-none">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                    <h4 class="text-left">@Html.LabelFor(model => model.QuestionsInExam)</h4>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <h4>
+                        <span class="icon-question icons icon text-right"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="panel-body text-center">
+                <h1>@Model.QuestionsInExam</h1>
+                <p>@Html.LabelFor(model => model.QuestionsInExam)</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel box-v1">
+            <div class="panel-heading bg-white border-none">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                    <h4 class="text-left">@Html.LabelFor(model => model.MinScore)</h4>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                    <h4>
+                        <span class="icon-flag icons icon text-right"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="panel-body text-center">
+                <h1>@Model.MinScore</h1>
+                <p>@Html.LabelFor(model => model.MinScore)</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+@*<div class="row">
+    <div class="col-md-4">
+            <h1>@Model.Score</h1>
+            <span class="text-muted">Puntuación</span>
+    </div>
+    <div class="col-md-4">
+        <h1>@Model.QuestionsInExam</h1>
+        <span class="text-muted">Preguntas</span>
+    </div>
+    <div class="col-md-4">
+        <h1>@Model.MinScore</h1>
+        <span class="text-muted">Puntuación Mínima</span>
+    </div>
+</div>*@

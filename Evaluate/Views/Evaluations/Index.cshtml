@@ -1,0 +1,71 @@
+﻿@model ViewModels.ExamViewModel
+
+@{
+    ViewBag.Title = "Examen";
+}
+
+<div class="panel-heading bg-white">
+    <h2>@ViewBag.Title - @ViewBag.SubjectName</h2>
+</div>
+
+@*<h2>Exámen</h2>
+    @using (Html.BeginForm())
+    {
+        <h2>@Model.Question</h2>
+        @Html.EditorFor(x => x.Answers)
+    }*@
+
+@using (Html.BeginForm("Index", "Evaluations", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @*@Html.HiddenFor(x => x.Id)*@
+    @Html.EditorFor(x => x.Questions)
+    @*<input type="submit" name="Nxt" value="Nxt" />*@
+
+
+    <nav>
+        <ul class="pager">
+            <li class="previous">
+                <input type="submit" name="Nxt" value="Anterior" class="btn btn-default" />
+            </li>
+            <li class="next">
+                <input type="submit" name="Nxt" value="Siguiente" class="btn btn-default" />
+            </li>
+        </ul>
+    </nav>
+
+    <hr />
+    <a class="btn btn-link" href="~/images/questions/faa-ct-8080-3e.pdf" target="_blank"><span class="icons icon-picture"></span> Ver figura</a>
+    
+    @*@Html.ActionLink("Ver Resultados", "ExamResults", new { id=Model.EvaluationId })*@
+
+    @*<nav>
+          <ul class="pager">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+          </ul>
+        </nav>*@
+
+}
+
+@*@model ViewModels.QuestionViewModel
+
+    <h2>Exámen</h2>
+    <hr />
+    @using (@Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.QuestionId)
+        @Html.HiddenFor(model => model.Sequence)
+        <h3> @Model.Sequence) @Model.Question</h3>
+        foreach (var a in Model.Answers)
+        {
+            <p>
+                @Html.RadioButtonFor(b => Model.SelectedId, a.AnswerId)  @a.Answer
+            </p>
+        }
+        <hr />
+        <input type="submit" name="Prv" value="Previous" />
+        <input type="submit" value="Nxt" />
+    }*@
